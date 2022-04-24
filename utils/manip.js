@@ -9,10 +9,7 @@ module.exports = {
         console.log(err);
         return;
       }
-      res.json({
-        message: "success",
-        data: rows,
-      });
+      console.log(rows);
     });
   },
 
@@ -23,13 +20,9 @@ module.exports = {
         console.log(err);
         return;
       }
-      res.json({
-        message: "success",
-        data: rows,
-      });
+      console.log(rows);
     });
   },
-
   viewEmployees() {
     const sql = `SELECT * FROM employee`;
     db.query(sql, (err, rows) => {
@@ -37,10 +30,7 @@ module.exports = {
         console.log(err);
         return;
       }
-      res.json({
-        message: "success",
-        data: rows,
-      });
+      console.log(rows);
     });
   },
 };
