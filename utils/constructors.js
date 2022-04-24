@@ -17,4 +17,4 @@ function Employee(first, last, role, manager) {
     this.manager = manager;
 }
 
-module.exports = constructors;
+module.exports = { Department, Role, Employee };
