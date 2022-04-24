@@ -9,7 +9,7 @@ module.exports = {
         console.log(err);
         return;
       }
-      console.log(rows);
+      console.table(rows);
     });
   },
 
@@ -20,7 +20,7 @@ module.exports = {
         console.log(err);
         return;
       }
-      console.log(rows);
+      console.table(rows);
     });
   },
   viewEmployees() {
@@ -30,7 +30,7 @@ module.exports = {
         console.log(err);
         return;
       }
-      console.log(rows);
+      console.table(rows);
     });
   },
 };
