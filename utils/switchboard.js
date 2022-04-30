@@ -1,39 +1,24 @@
-const { viewDepartments, viewRoles, viewEmployees } = require("./manip");
+const start = require("../lib/questions");
+const inquirer = require("inquirer");
 
-function switchboard(choice) {
+//Functions
+const viewDepartments = require("../lib/deparment");
+// const {} = require("../lib/employee");
+// const {} = require("../lib/role");
+
+const switchboard = async (choice) => {
   switch (choice) {
+    case "Exit":
+      exit();
+      break;
     case "View all departments":
-      viewDepartments();
-      break;
-    case "View all roles":
-      viewRoles();
-      break;
-    case "View all employees":
-      viewEmployees();
-      break;
-    case "View employees by manager":
-      break;
-    case "View employees by department":
-      break;
-    case "Add a department":
-      break;
-    case "Add a role":
-      break;
-    case "Add an employee":
-      break;
-    case "Update and employee role":
-      break;
-    case "Update employee manager":
-      break;
-    case "Delete a department":
-      break;
-    case "Delete a role":
-      break;
-    case "Delete and employee":
+      await viewDepartments();
       break;
     default:
+      exit();
       break;
   }
-}
+  // await again();
+};
 
 module.exports = switchboard;

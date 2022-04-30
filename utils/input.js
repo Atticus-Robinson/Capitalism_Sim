@@ -1,19 +1,33 @@
-const inquirer = require("inquirer");
+//Question library
+const start = require("../lib/questions");
+
+//Switchborad util
 const switchboard = require("./switchboard");
-const firstQ = require("../lib/questions");
 
+const inquirer = require("inquirer");
+const db = require("../db/connection");
 
-function initialQ() {
-    inquirer
-    .prompt(firstQ
-    )
-    .then((answer) => {
-        switchboard(answer.initialQ);
-        initialQ();
+const initiateProgram = async () => {
+   inquirer
+    .prompt(start)
+    .then(async (answer) => {
+      await switchboard(answer.start);
+      again();
     })
     .catch((error) => {
-        console.log(error);
+      console.log(error);
     });
+};
+
+const again = async () => {
+ initiateProgram();
+};
+
+function exit() {
+  console.log("exit");
 }
 
-module.exports = initialQ;
+module.exports = {
+  initiateProgram,
+  again,
+};
