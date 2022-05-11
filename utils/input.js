@@ -17,29 +17,20 @@ const initiateProgram = async () => {
       console.log(error);
     });
 };
-
-const addDepartmentAsk = async () => {
-  await inquirer
-    .prompt(addDepartmentQ)
-    .then(async (answer) => {
-      await addDepartment(answer.addDepartmentQ);
-      again();
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-const addRoleAsk = async () => {
-  await inquirer
-    .prompt(addRoleQ)
-    .then(async (answer) => {
-      await addDepartment(answer.addRoleQ);
-      again();
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+const start = {
+  name: "start",
+  message: "What would you like to do...",
+  type: "list",
+  choices: [
+    "View all departments",
+    "View all roles",
+    "View all employees",
+    "Add a department",
+    "Add a role",
+    "Add an employee",
+    "Update and employee role",
+    "Exit",
+  ],
 };
 
 const again = async () => {
@@ -73,24 +64,6 @@ const switchboard = async (choice) => {
       exit();
       break;
   }
-};
-
-//Questions
-
-const start = {
-  name: "start",
-  message: "What would you like to do...",
-  type: "list",
-  choices: [
-    "View all departments",
-    "View all roles",
-    "View all employees",
-    "Add a department",
-    "Add a role",
-    "Add an employee",
-    "Update and employee role",
-    "Exit",
-  ],
 };
 
 const addDepartmentQ = {
