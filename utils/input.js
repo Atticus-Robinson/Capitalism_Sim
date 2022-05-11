@@ -70,6 +70,7 @@ const switchboard = async (choice) => {
       break;
     case "Update an employee role":
       await updateEmployee();
+      break;
     default:
       exit();
       break;
