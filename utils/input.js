@@ -3,7 +3,7 @@ const inquirer = require("inquirer");
 
 //SQL Functions
 const { viewDepartments, addDepartment } = require("../lib/deparment");
-const { viewEmployees } = require("../lib/employee");
+const { viewEmployees, addEmployee  } = require("../lib/employee");
 const { viewRoles, addRole } = require("../lib/role");
 
 const initiateProgram = async () => {
@@ -56,6 +56,9 @@ const switchboard = async (choice) => {
       break;
     case "Add a role":
       await addRole();
+      break;
+    case "Add an employee":
+      await addEmployee();
       break;
     default:
       exit();
