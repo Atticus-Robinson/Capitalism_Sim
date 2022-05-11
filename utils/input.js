@@ -3,7 +3,11 @@ const inquirer = require("inquirer");
 
 //SQL Functions
 const { viewDepartments, addDepartment } = require("../lib/deparment");
-const { viewEmployees, addEmployee  } = require("../lib/employee");
+const {
+  viewEmployees,
+  addEmployee,
+  updateEmployee,
+} = require("../lib/employee");
 const { viewRoles, addRole } = require("../lib/role");
 
 const initiateProgram = async () => {
@@ -28,7 +32,7 @@ const start = {
     "Add a department",
     "Add a role",
     "Add an employee",
-    "Update and employee role",
+    "Update an employee role",
     "Exit",
   ],
 };
@@ -37,6 +41,9 @@ const again = async () => {
   initiateProgram();
 };
 
+const exit = () => {
+  console.log('test');
+}
 const switchboard = async (choice) => {
   switch (choice) {
     case "Exit":
@@ -60,6 +67,8 @@ const switchboard = async (choice) => {
     case "Add an employee":
       await addEmployee();
       break;
+    case "Update an employee role":
+      await updateEmployee();
     default:
       exit();
       break;
