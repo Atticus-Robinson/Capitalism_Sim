@@ -3,7 +3,7 @@ const inquirer = require("inquirer");
 
 //SQL Functions
 const { viewDepartments, addDepartment } = require("../lib/deparment");
-const { viewEmployees, viewByManager } = require("../lib/employee");
+const { viewEmployees } = require("../lib/employee");
 const { viewRoles, addRole } = require("../lib/role");
 
 const initiateProgram = async () => {
@@ -51,11 +51,8 @@ const switchboard = async (choice) => {
     case "View all employees":
       await viewEmployees();
       break;
-    case "View employees by manager":
-      await viewByManager();
-      break;
     case "Add a department":
-      await addDepartmentAsk();
+      await addDepartment();
       break;
     case "Add a role":
       await addRoleAsk();
@@ -66,41 +63,7 @@ const switchboard = async (choice) => {
   }
 };
 
-const addDepartmentQ = {
-  name: "addDepartmentQ",
-  message: "Enter the department you would like to add...",
-  type: "input",
-};
-
-const addRoleQ = async () => {
-  let currentDepartments;
-  await db
-    .promise()
-    .query(`SELECT departments.name FROM departments`)
-    .then(([rows]) => (currentDepartments = rows.map((row) => row.name)))
-    .catch((err) => console.log(err));
-  [
-    {
-      name: "addRoleQ",
-      message: "Enter the role you would like to add...",
-      type: "input",
-    },
-    {
-      name: "addSalaryQ",
-      message: "Enter the salary...",
-      type: "input",
-    },
-    {
-      name: "addDepartmentQ",
-      message: "Choose the department",
-      type: "list",
-      choices: currentDepartments,
-    },
-  ];
-};
-
 module.exports = {
   initiateProgram,
   again,
-  addDepartmentAsk,
 };
