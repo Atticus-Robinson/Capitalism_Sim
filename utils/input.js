@@ -9,7 +9,6 @@ const {
   updateEmployee,
 } = require("../lib/employee");
 const { viewRoles, addRole } = require("../lib/role");
-const { init } = require("express/lib/application");
 
 const initiateProgram = async () => {
   inquirer
@@ -45,7 +44,7 @@ const again = async () => {
 const exit = () => {
   db.end();
   process.exit(1);
-}
+};
 const switchboard = async (choice) => {
   switch (choice) {
     case "Exit":
