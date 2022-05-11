@@ -55,7 +55,7 @@ const switchboard = async (choice) => {
       await addDepartment();
       break;
     case "Add a role":
-      await addRoleAsk();
+      await addRole();
       break;
     default:
       exit();
