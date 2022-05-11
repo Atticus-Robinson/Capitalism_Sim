@@ -1,6 +1,3 @@
-//Question library
-const { start, addDepartmentQ, addRoleQ } = require("../lib/questions");
-
 const db = require("../db/connection");
 const inquirer = require("inquirer");
 
@@ -34,7 +31,6 @@ const addDepartmentAsk = async () => {
 };
 
 const addRoleAsk = async () => {
-  let currentDepartments = getAllDepartments();
   await inquirer
     .prompt(addRoleQ)
     .then(async (answer) => {
@@ -77,6 +73,57 @@ const switchboard = async (choice) => {
       exit();
       break;
   }
+};
+
+//Questions
+
+const start = {
+  name: "start",
+  message: "What would you like to do...",
+  type: "list",
+  choices: [
+    "View all departments",
+    "View all roles",
+    "View all employees",
+    "Add a department",
+    "Add a role",
+    "Add an employee",
+    "Update and employee role",
+    "Exit",
+  ],
+};
+
+const addDepartmentQ = {
+  name: "addDepartmentQ",
+  message: "Enter the department you would like to add...",
+  type: "input",
+};
+
+const addRoleQ = async () => {
+  let currentDepartments;
+  await db
+    .promise()
+    .query(`SELECT departments.name FROM departments`)
+    .then(([rows]) => (currentDepartments = rows.map((row) => row.name)))
+    .catch((err) => console.log(err));
+  [
+    {
+      name: "addRoleQ",
+      message: "Enter the role you would like to add...",
+      type: "input",
+    },
+    {
+      name: "addSalaryQ",
+      message: "Enter the salary...",
+      type: "input",
+    },
+    {
+      name: "addDepartmentQ",
+      message: "Choose the department",
+      type: "list",
+      choices: currentDepartments,
+    },
+  ];
 };
 
 module.exports = {
